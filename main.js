@@ -9,8 +9,8 @@ class App {
 
         this.scene = new THREE.Scene();
         this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-
         this.clock = new THREE.Clock();
+
         this.scrollProgress = 0;
         this.targetScrollProgress = 0;
         this.totalProjects = 3;
@@ -33,6 +33,7 @@ class App {
         this.videoTexture = new THREE.VideoTexture(this.video);
         this.videoTexture.minFilter = THREE.LinearFilter;
         this.videoTexture.magFilter = THREE.LinearFilter;
+
         if (this.material) this.material.uniforms.tDiffuse.value = this.videoTexture;
     }
 
@@ -47,13 +48,13 @@ class App {
                 uTime: { value: 0 },
                 uNoiseIntensity: { value: 0.03 }
             },
-            vertexShader: \`
+            vertexShader: `
                 varying vec2 vUv;
                 void main() {
                     vUv = uv;
                     gl_Position = vec4(position, 1.0);
                 }
-            \`,
+            `,
             fragmentShader: fragmentShaderText
         });
 
